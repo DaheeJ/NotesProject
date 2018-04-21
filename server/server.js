@@ -16,7 +16,7 @@ app.use(cors())
 
 app.get('/notes', (req, res) => {
     const fakenotes = [
-        'bryan should put on pants',
+        'bryan should make dinner',
         'anubis is cute',
         'i like beer',
         'foo',

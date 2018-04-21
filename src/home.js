@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Note from './note'
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
+
 // () parens
 // [] brackets
 // {} braces
@@ -28,11 +32,16 @@ const homestyle = {
 }
 
 const addNewStyle = Object.assign({}, noteStyle, {
-    justifyContent: 'center',
-    alignItems: 'center',
     textDecoration: 'none',
-    color: 'salmon'
-})
+    color: 'salmon',
+    textAlign: 'center',
+    lineHeight: '300px'
+});
+const someButt = {
+    position: 'absolute'
+   
+};
+
 class Home extends React.Component {
     state = {
         notes: []
@@ -47,6 +56,9 @@ class Home extends React.Component {
     render () {
         return (
            <div style={homestyle}>
+                <FloatingActionButton style={someButt} mini={true}>
+                    <ContentAdd />
+                </FloatingActionButton  >
                <Link to='/new' style={addNewStyle}>
                  Add a Note
                </Link>
@@ -57,5 +69,6 @@ class Home extends React.Component {
         )
     }
 }
+
 
 export default Home
