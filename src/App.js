@@ -7,7 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Welcome from './welcome';
 import Home from './home';
 import NewP from './newP';
-import NoteId from './note_id'
 
 const muiTheme = getMuiTheme({
   // palette: {
@@ -23,7 +22,6 @@ export default () => {
     <MuiThemeProvider muiTheme={muiTheme}>
     <BrowserRouter>
       <div>
-        <Route path='/notes/:id' exact component={NoteId} />
         <Route path='/new' exact component={NewP} />
         <Route path='/home' exact component={Home} />
         <Route path='/' exact component={Welcome} />
@@ -32,4 +30,3 @@ export default () => {
     </MuiThemeProvider>
   )
 }
-

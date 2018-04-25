@@ -18,6 +18,7 @@ const noteStyle = {
     boxShadow: '2px 2px 4px #999',
     display: 'flex',
     flexDirection: 'column',
+    padding: '8px',
     width: '300px',
     fontFamily: 'Helvetica Neue',
     fontSize: '20px',
@@ -37,10 +38,8 @@ const addNewStyle = Object.assign({}, noteStyle, {
     lineHeight: '300px'
 });
 const someButt = {
-    lineHeight: 1,
-    display: 'inherit',
-    alignSelf: 'center',
-    marginTop: '80px'
+    position: 'absolute'
+   
 };
 
 class Home extends React.Component {
@@ -57,14 +56,14 @@ class Home extends React.Component {
     render () {
         return (
            <div style={homestyle}>
-                <Link to='/new' style={addNewStyle}>
-                    <FloatingActionButton style={someButt} mini={true}>
-                        <ContentAdd />
-                    </FloatingActionButton>
+                <FloatingActionButton style={someButt} mini={true}>
+                    <ContentAdd />
+                </FloatingActionButton  >
+               <Link to='/new' style={addNewStyle}>
                  Add a Note
                </Link>
-               {this.state.notes.map(({ id, body }) => {
-                   return <Note key={id} text={body} style={noteStyle} />
+               {this.state.notes.map((note, i) => {
+                   return <Note key={i} text={note} style={noteStyle} />
                })}
             </div> 
         )

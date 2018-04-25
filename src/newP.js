@@ -1,27 +1,13 @@
 import React from 'react';
+const thing = () => window.alert('i saved ur note!')
 
-class NewNote extends React.Component {
-  handleClick = () => {
-    const note = this.textarea.value
-    fetch('http://localhost:5003/newnote', {
-      body: JSON.stringify(note),
-      method: 'POST'
-    })
-      .then((res) => res.json())
-      .then(({ id }) => {
-        window.location.href = `/notes/${id}`
-      })
-      .catch((err) => { console.log(err) })
-  }
-
-  render () {
+const NewNote = ({ handleClick = thing }) => {
     return (
-        <div>
-          <textarea cols="40" rows="20" ref={(textarea) => { this.textarea = textarea }}/>
-          <button onClick={this.handleClick}>SAVE</button>
-        </div>
+      <div> 
+        <textarea cols="40" rows="20" />
+        <button onClick={handleClick}>SAVE</button>
+      </div>
     )
-  }
 }
 
 export default NewNote
