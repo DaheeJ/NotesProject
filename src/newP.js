@@ -1,13 +1,12 @@
 import React from 'react';
+import r2 from 'r2'
 
 class NewNote extends React.Component {
-  handleClick = () => {
+  handleClick = (res) => {
     const note = this.textarea.value
-    fetch('http://localhost:5003/newnote', {
-      body: JSON.stringify(note),
-      method: 'POST'
-    })
-      .then((res) => res.json())
+    r2.post('http://localhost:5003/newnote', {
+      json: { body: note }
+    }).json
       .then(({ id }) => {
         window.location.href = `/notes/${id}`
       })

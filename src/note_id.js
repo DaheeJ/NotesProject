@@ -1,5 +1,5 @@
 import React from 'react'
-
+import r2 from 'r2'
 
 class Note extends React.Component {
     state = {
@@ -9,8 +9,7 @@ class Note extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.id
         // props: { match: { params: { id: 'asdf' }}}
-        fetch(`http://localhost:5003/notes/${id}`)
-            .then((res) => res.json())
+        r2.get(`http://localhost:5003/notes/${id}`).json
             .then((note) => this.setState({ note }))
             .catch((err) => { console.log(err)} )
     }

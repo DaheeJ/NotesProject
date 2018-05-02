@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Note from './note'
 
+import r2 from 'r2'
+
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-
 
 // () parens
 // [] brackets
@@ -32,7 +33,7 @@ const homestyle = {
 
 const addNewStyle = Object.assign({}, noteStyle, {
     textDecoration: 'none',
-    color: 'salmon',
+    color: '#51BAD1',
     textAlign: 'center',
     lineHeight: '300px'
 });
@@ -49,9 +50,21 @@ class Home extends React.Component {
     }
 
     componentDidMount () {
-        fetch('http://localhost:5003/notes')
-            .then((res) => res.json())
+        this.fetchAllNotes()
+    }
+
+    // DRY
+    // Don't Repeat Yourself
+    fetchAllNotes = () => {
+        r2('http://localhost:5003/notes').json
             .then((notes) => this.setState({ notes }))
+    }
+
+    deleteNote = (id) => () => {
+        r2.delete(`http://localhost:5003/notes/${id}`).text
+            .then(() => {
+                this.fetchAllNotes()
+            })
     }
 
     render () {
@@ -64,7 +77,7 @@ class Home extends React.Component {
                  Add a Note
                </Link>
                {this.state.notes.map(({ id, body }) => {
-                   return <Note key={id} text={body} style={noteStyle} />
+                   return <Note del={this.deleteNote(id)} key={id} text={body} style={noteStyle} />
                })}
             </div> 
         )

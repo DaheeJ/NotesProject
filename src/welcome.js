@@ -6,6 +6,7 @@ const Welcome = () => {
         <React.Fragment>
             <div style={welcomeStyle}>
             <h2>Hello there </h2>
+            <h3>Welcome to Dahee's Note</h3>
             <h4>Let's take some note</h4>
             <Button />
             </div>
@@ -15,7 +16,7 @@ const Welcome = () => {
 
 const welcomeStyle = {
     fontFamily: 'Helvetica Neue',
-    color: '#B2EBF2',
+    color: '#8C9EFF',
     fontSize: '20px',
     margin: '8px',
     height: '300px',
